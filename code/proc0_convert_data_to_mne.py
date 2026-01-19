@@ -7,14 +7,13 @@ import numpy as np
 from params import DATA_DIR, CSV_DIR
 
 data_DIR = DATA_DIR
-new_data_DIR = '/cs/department2/data/eeg_lemon/raw_renamed/'
+new_data_DIR = DATA_DIR / "converted_to_mne"
 os.makedirs(new_data_DIR, exist_ok=True)
 
-
-df = pd.read_csv(f'{CSV_DIR}/name_match2.csv')
+df = pd.read_csv(f'{CSV_DIR}/name_match.csv')
 subjects = df.INDI_ID
 
-folder = '/cs/department2/data/eeg_lemon/epo_from_raw/'
+folder = DATA_DIR / "epo_from_raw/"
 os.makedirs(folder, exist_ok=True)
 
 for i_sub, subject in enumerate(subjects):
@@ -26,7 +25,7 @@ for i_sub, subject in enumerate(subjects):
     file_type = 'vhdr'
     new_file = f"{new_data_DIR}/{initial_name}/RSEEG/{initial_name}.{file_type}"
 
-    # S200 eyes open, S10 eyes closed
+    # S200 eyes open, S210 eyes closed
     cond_list = {210: 'ec', 200: 'eo'}
     trigger = 210
 

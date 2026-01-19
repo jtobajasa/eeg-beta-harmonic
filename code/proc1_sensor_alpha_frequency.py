@@ -22,7 +22,7 @@ def process_1sub(subject, condition):
     raw.set_eeg_reference("average")
 
     if subject == "sub-032478":
-        # this participants has potentially wrong-labeled channel names
+        # this participant has potentially wrong-labeled channel names
         return
 
     # pick midline channels
@@ -32,7 +32,7 @@ def process_1sub(subject, condition):
     front_channels = [ch for ch in raw.ch_names if "F" in ch]
     raw.drop_channels(front_channels)
 
-    # compute PSD
+    # compute Power Spectra Density (PSD)
     psd, freqs = mne.time_frequency.psd_welch(
         raw,
         fmin=SPEC_FMIN,
@@ -48,7 +48,7 @@ def process_1sub(subject, condition):
 
     peak = np.nanmean(alpha_bands[:, 0])
     amp = np.nanmean(alpha_bands[:, 1])
-    rsq = np.mean([fm.get_results()[i][2] for i in range(len(raw.ch_names))])
+    rsq = np.mean([fm.get_results()[i][2] for i in range(len(raw.ch_names))]) # R squared of the fits
 
     # create dataframe with data
     df_subject = pd.Series(

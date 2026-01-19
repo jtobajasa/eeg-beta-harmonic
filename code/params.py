@@ -1,9 +1,11 @@
+from pathlib import Path
+
 # parameters and paths
-DATA_DIR = "/Users/n_schaworonkow/data/eeg/eeg-lemon/"
-BASE_DIR = "/Users/n_schaworonkow/projects/eeg-alpha-beta/"
+DATA_DIR = Path.home() / "Documents" / "LEMON_data_preprocessed_Schaworonkow"
+BASE_DIR = Path.home() / "Documents" / "GitHub" / "eeg-beta-harmonic"
 
 CSV_DIR = f"{BASE_DIR}/csv/"
-RESULTS_DIR = f"{BASE_DIR}/results/"
+RESULTS_DIR = f"{DATA_DIR}/results/"
 
 # spectral parametrization
 SPEC_PARAM_DIR = f"{RESULTS_DIR}/sensor_param/"
